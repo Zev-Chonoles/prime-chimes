@@ -1,0 +1,224 @@
+/*===============*/
+/*=    reset    =*/
+/*===============*/
+
+html, body, div, canvas
+{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+
+
+
+/*=======================*/
+/*=    general stuff    =*/
+/*=======================*/
+
+body
+{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding-bottom: 100px;
+  min-width: 800px;
+}
+
+h2
+{
+  font-size: 14pt;
+}
+
+a:link, a:hover, a:visited, a:visited:hover
+{
+  color: #1940e6;
+  text-decoration: underline;
+}
+
+a:hover, a:visited:hover
+{
+  background-color: #cccccc;
+  text-decoration: none;
+}
+
+
+/* The loading-dots <img> should start out as a block element,  */
+/* then get display: none from Javascript when everything loads */
+#loading-dots
+{
+  display: block;
+}
+
+/* These elements should start out hidden, then get display: block */
+/* from Javascript (note: it's bad to use display: none on things  */
+/* containing MathJax but everything seems to work fine for now)   */
+#field, #canvas, #buttons, #about
+{
+  display: none;
+}
+
+/* Vertically spacing things apart slightly, plus centering */
+#field, #loading-dots, #canvas, #buttons, #about
+{
+  margin: 20px auto;
+}
+
+
+
+
+/*===========================*/
+/*=    field <div> stuff    =*/
+/*===========================*/
+
+
+/* To each of these three elements, 4px is added to the bottom  */
+/* (on #polynomial-current, part of the vertical addition comes */
+/* from the border). Since these elements are also aligned to   */
+/* the bottom of their line, their contents stay horizontally   */
+/* level as if no borders or padding were added, even when the  */
+/* form is revealed and hidden.                                 */
+
+#field-description, #polynomial-current, #polynomial-new
+{
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#field-description
+{
+  padding: 4px 2px;
+}
+
+#polynomial-current
+{
+  padding: 2px 2px;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #ffffff #ffffff #cccccc;
+  border-radius: 8px;
+}
+
+#polynomial-current:hover
+{
+  border-bottom-color: #0066ff;
+}
+
+#polynomial-new
+{
+  padding: 4px 2px;
+  display: none;
+  position: relative;
+}
+
+
+/* A small warning message about not giving huge polynomials */
+/* (positioned absolutely, relative to #polynomial-new)      */
+#polynomial-hovertext
+{
+  display: none;
+  font-size: 9px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+
+#polynomial-new:hover #polynomial-hovertext
+{
+  display: inline;
+}
+
+
+
+
+/*=================*/
+/*=    buttons    =*/
+/*=================*/
+
+#math-button, #mute-button
+{
+  width: 300px;
+  height: 65px;
+  display: inline-block;
+  vertical-align: bottom;
+
+  /* counteracting the general link styles from above */
+  background-color: #ffffff;
+  text-decoration: none;
+}
+
+#math-button
+{
+  font-size: 40pt;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+#math-button:hover
+{
+  color: #0066ff;
+}
+
+
+/* Using a sprite to avoid the loading delay of having different pictures */
+#mute-button
+{
+  background: url('http://zevchonoles.org/prime-chimes/img/mute-sprite.png') no-repeat;
+}
+
+#mute-button.mute
+{
+  background-position: 0 0;
+}
+
+#mute-button.mute:hover
+{
+  background-position: 0 -65px;
+}
+
+#mute-button.unmute
+{
+  background-position: 0 -130px;
+}
+
+#mute-button.unmute:hover
+{
+  background-position: 0 -195px;
+}
+
+
+
+
+/*========================*/
+/*=    factorizations    =*/
+/*========================*/
+
+/* All the factorization data from Sage gets dumped on the page   */
+/* inside these <div>'s. By default, everything should be hidden. */
+#factorizations div div, #factorizations-buffer div div
+{
+  display: none;
+}
+
+/* When the user has toggled on displaying the math, the main loop */
+/* will apply the class "current-show" to the relevant <div>       */ 
+#factorizations div div.current-show, #factorizations-buffer div div.current-show
+{
+  display: block;
+  width: 600px;
+  margin: 0 auto;
+}
+
+
+
+
+/*===========================*/
+/*=    about <div> stuff    =*/
+/*===========================*/
+
+#about
+{
+  width: 600px;
+  text-align: left;
+}
+
+
