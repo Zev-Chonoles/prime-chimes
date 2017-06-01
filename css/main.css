@@ -162,7 +162,7 @@ a:hover, a:visited:hover
 /* Using a sprite to avoid the loading delay of having different pictures */
 #mute-button
 {
-  background: url('http://zevchonoles.org/prime-chimes/img/mute-sprite.png') no-repeat;
+  background: url('https://zevchonoles.org/projects/prime-chimes/img/mute-sprite.png') no-repeat;
 }
 
 #mute-button.mute

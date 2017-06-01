@@ -1,7 +1,7 @@
 <?php
   // Sage was complaining that the environment variable $HOME was not set
   // (I guess because PHP is calling it, not me?) Anyway this seems to fix it
-  putenv("HOME=/CENSORED");
+  putenv("HOME=/tmp");
 
   // Escaping HTML characters
   $coeffs = htmlspecialchars($_GET["coeffs"]);
@@ -14,7 +14,7 @@
      preg_match('/^[a-f0-9]+$/', $thread_id))
   {
     // timeout does exactly what it says
-    $cmd = "timeout 20s ./script.sage " . $coeffs . " " . $start . " " . $thread_id;
+    $cmd = "timeout 20s ./script.sage " . $coeffs . " " . $start . " " . $thread_id . "";
     echo shell_exec($cmd);
   }
   else

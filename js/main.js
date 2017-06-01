@@ -3,7 +3,7 @@
 // ========================================================
 
 // Initial logical state
-var show_math = false;
+var show_math = true;
 
 // Get button
 var math_button = document.getElementById("math-button");
@@ -18,9 +18,11 @@ function toggle_math()
     // Change page
     var current_math = document.getElementsByClassName("current-show")[0];
     current_math.className = "current";
+    var about = document.getElementById("about");
+    about.style.display = "block";
 
     // Change button
-    math_button.innerHTML = "+";
+    math_button.innerHTML = "&cularr;"; // HTML entity for back arrow
   }
   else
   {
@@ -30,13 +32,15 @@ function toggle_math()
     // Change page
     var current_math = document.getElementsByClassName("current")[0];
     current_math.className = "current-show";
+    var about = document.getElementById("about");
+    about.style.display = "none";
 
     // Change button
-    math_button.innerHTML = "&#8722;"; // HTML entity for minus sign
+    math_button.innerHTML = "?"; 
   }
 
   // Should prevent "#" from being appended to the URL in the address bar
-  // from http://javascript.info/tutorial/default-browser-action
+  // from https://javascript.info/tutorial/default-browser-action
   event.preventDefault ? event.preventDefault() : (event.returnValue=false);
 }  
 
@@ -78,7 +82,7 @@ function toggle_mute()
   }
 
   // Should prevent "#" from being appended to the URL in the address bar
-  // from http://javascript.info/tutorial/default-browser-action
+  // from https://javascript.info/tutorial/default-browser-action
   event.preventDefault ? event.preventDefault() : (event.returnValue=false);
 }
 
@@ -131,8 +135,8 @@ for (var i = 1; i <= 27; i++)
 {
   celestas.push(new Howl(
     {
-      urls: ['http://zevchonoles.org/prime-chimes/aud/celestas/celesta' + i + '.ogg',
-             'http://zevchonoles.org/prime-chimes/aud/celestas/celesta' + i + '.mp3']
+      urls: ['https://zevchonoles.org/projects/prime-chimes/aud/celestas/celesta' + i + '.ogg',
+             'https://zevchonoles.org/projects/prime-chimes/aud/celestas/celesta' + i + '.mp3']
     }))
 }
 
@@ -141,8 +145,8 @@ for (var i = 1; i <= 27; i++)
 {
   clavs.push(new Howl(
     {
-      urls: ['http://zevchonoles.org/prime-chimes/aud/clavs/clav' + i + '.ogg',
-             'http://zevchonoles.org/prime-chimes/aud/clavs/clav' + i + '.mp3']
+      urls: ['https://zevchonoles.org/projects/prime-chimes/aud/clavs/clav' + i + '.ogg',
+             'https://zevchonoles.org/projects/prime-chimes/aud/clavs/clav' + i + '.mp3']
     }))
 }
 
@@ -151,8 +155,8 @@ for (var i = 1; i <= 3; i++)
 {
   swells.push(new Howl(
     {
-      urls: ['http://zevchonoles.org/prime-chimes/aud/swells/swell' + i + '.ogg',
-             'http://zevchonoles.org/prime-chimes/aud/swells/swell' + i + '.mp3']
+      urls: ['https://zevchonoles.org/projects/prime-chimes/aud/swells/swell' + i + '.ogg',
+             'https://zevchonoles.org/projects/prime-chimes/aud/swells/swell' + i + '.mp3']
     }))
 }
 
@@ -180,7 +184,7 @@ context.fillText("foo", 0, 0);
 // it with each new prime to the width of the browser window.
 //
 // Setting a canvas dimension attribute will also clear the canvas and its
-// current properties (see http://stackoverflow.com/a/5517885). So when resizing
+// current properties (see https://stackoverflow.com/a/5517885). So when resizing
 // and clearing the canvas, we have to put the font size and alignment back in.
 function resize_and_clear_canvas()
 {
@@ -223,6 +227,9 @@ function getOutput(coeffs, start)
       {
         // As soon as request is complete, fills in the buffer with the response
         buffer.innerHTML = xhr.responseText;
+        
+        // For testing:
+        // alert("start|" + xhr.responseText + "|end");
 
         // Tells MathJax to start typesetting the responseText
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, buffer]);
@@ -252,7 +259,7 @@ function getOutput(coeffs, start)
       }
 
       // A status of 0 just means the XMLHttpRequest was canceled before it could finish
-      // (so no need to make an alert about it) See http://stackoverflow.com/q/3825581
+      // (so no need to make an alert about it) See https://stackoverflow.com/q/3825581
       else if (xhr.status !== 0)
       {
       	alert("Oops! XMLHttpRequest returned with HTTP status code " + xhr.status);
@@ -320,7 +327,7 @@ function draw_and_chime(n)
   else
   {
     document.getElementById("about").style.display = "none";
-    alert("Call to Sage either took too long (>20s) or produced an error");
+    alert("Oops! Sage either took too long (>20s) or produced an error.\n\nTry reloading the page.");
     return;
   }
 

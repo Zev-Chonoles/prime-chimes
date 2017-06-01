@@ -1,0 +1,8 @@
+csage.libs.pari.gen_py
+pari
+p0
+(S'[y + 1, [1, 0], 1, 1, [Mat(1), Mat(1), Mat(1), Mat(1), 1, Mat(1), [1, 0], []], [-1.00000000000000], [1], Mat(1), Mat(1)]'
+p1
+tp2
+Rp3
+.

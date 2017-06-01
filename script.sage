@@ -1,4 +1,4 @@
-#!/CENSORED/sage-6.4.1-x86_64-Linux/sage
+#!/usr/bin/sage
 
 # Regular expressions
 import re
@@ -9,10 +9,11 @@ import sys
 # Used when checking whether computation was done before
 import os.path
 
+# Used when copying pickled data for default polynomial
+import shutil
+
 # Storing Sage / Python objects as strings for use later
 import pickle
-
-
 
 
 # GET COMMAND LINE ARGUMENTS
@@ -64,12 +65,16 @@ else:
 
 
 
-
 # RETRIEVE (OR CREATE) PICKLED DATA
 # -------------------------------------
 
-filename = 'pickled/' + original_coeffs_string + "-" + thread_id + "-" + str(starting_index)
-new_filename = 'pickled/' + original_coeffs_string + "-" + thread_id + "-" + str(starting_index + 100)
+filename = 'pickled/' + original_coeffs_string + '-' + thread_id + '-' + str(starting_index)
+new_filename = 'pickled/' + original_coeffs_string + '-' + thread_id + '-' + str(starting_index + 100)
+
+# If someone has just opened the page, copy the pickled data for the
+# default polynomial instead of recomputing it
+if coeffs_array == [1,-5,6,2,4,1,-3,-2,1] and starting_index == 0:
+    shutil.copy('pickled/default', filename)
 
 if os.path.isfile(filename):
     pickled_data = open(filename, 'r')

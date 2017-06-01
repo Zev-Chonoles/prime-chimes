@@ -238,43 +238,50 @@
   $thread_id = str_replace(".", "e", $thread_id);
 
 ?><!doctype html>
-
 <html lang="en-US">
-
 <head prefix="og: http://ogp.me/ns#">
 
+  <!-- Basic Information
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
   <title>Prime Chimes</title>
-
-  <meta name="author" content="Zev Chonoles" >
-
+  <meta name="author" content="Zev Chonoles">
   <meta name="description" content="Listen to primes factoring in a number field.">
-
   <meta name="keywords" content="Zev Chonoles, math, prime, chimes, factorization, audiation, visualization">
 
-  <link rel="shortcut icon" href="http://zevchonoles.org/prime-chimes/img/favicon.ico">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="shortcut icon" href="//zevchonoles.org/projects/prime-chimes/img/favicon.ico">
 
-  <link rel="stylesheet" href="http://zevchonoles.org/prime-chimes/css/main.css">
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="//zevchonoles.org/projects/prime-chimes/css/main.css">
 
-  <!-- Computer Modern font -->
-  <link rel="stylesheet" href="http://zevchonoles.org/prime-chimes/css/cm-serif.css">
+  <!-- Font
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="//zevchonoles.org/projects/prime-chimes/css/cm-serif.css">
 
-  <!-- Howler -->
-  <script src="http://zevchonoles.org/prime-chimes/js/howler.min.js"></script>
+  <!-- Howler
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script async src="//zevchonoles.org/projects/prime-chimes/js/howler.min.js"></script>
 
-  <!-- MathJax -->
+  <!-- MathJax
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ messageStyle: "none",
     "HTML-CSS": {linebreaks:{automatic: true,  width: "600px"}} }); </script>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
 
-  <!-- Open Graph -->
+  <!-- Open Graph
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta property="og:title" content="Prime Chimes">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://zevchonoles.org/prime-chimes/">
-  <meta property="og:image" content="http://zevchonoles.org/prime-chimes/img/open-graph.png">
+  <meta property="og:url" content="http://zevchonoles.org/projects/prime-chimes/">
+  <meta property="og:image" content="http://zevchonoles.org/projects/prime-chimes/img/open-graph.png">
   <meta property="og:site_name" content="Zev Chonoles">
   <meta property="og:description" content="Listen to primes factoring in a number field.">
 
-  <!-- Google Analytics -->
+  <!-- Google Analytics
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -285,19 +292,18 @@
     ga('send', 'pageview');
   </script>
 
-  <!-- -----------------------------------------------------------------------------------------
-      This page is © <?php echo date("Y"); ?> Zev Chonoles, and licensed under Creative Commons Attribution 4.0.
-      See a brief, easy-to-read summary here:
+  <!-- Copyright and License
+  ––––––––––––––––––––––––––––––––––––––––––––––––––
+   This page is © <?php echo date("Y"); ?> Zev Chonoles and licensed under
+   Creative Commons Attribution 4.0, summarized here:
+      http://creativecommons.org/licenses/by/4.0/
 
-                           http://creativecommons.org/licenses/by/4.0/
-
-      Basically, do anything you want with this as long as you give appropriate attribution.
-
-      This page uses audio files from http://listen.hatnote.com, a project of Stephen LaPorte
-      and Mahmoud Hashemi. This is permitted by their license, which I've included at
-
-                     http://zevchonoles.org/prime-chimes/hatnote-license.txt
-    ----------------------------------------------------------------------------------------- -->
+   This page uses audio files from 
+              http://listen.hatnote.com
+   a project of Stephen LaPorte and Mahmoud Hashemi. This
+   is permitted by their license, which I've included at 
+  https://zevchonoles.org/prime-chimes/hatnote-license.txt
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 </head>
 
@@ -317,11 +323,11 @@
 
     <span id="polynomial-new">
 
-      <form id="polynomial-input" action="http://zevchonoles.org/prime-chimes/" method="post">
+      <form id="polynomial-input" action="" method="post">
         <input name="polynomial-input" type="text" size="<?php echo $size_of_poly_form; ?>"
           value="<?php echo $poly_for_mathjax; ?>"></input>
         <button id="polynomial-cancel" type="button" onclick="toggle_form();">Cancel</button>
-        <button id="polynomial-cancel" type="submit">Submit</button>
+        <button id="polynomial-submit" type="submit">Submit</button>
       </form>
 
       <span id="polynomial-hovertext">Note: Polynomials with large degree or large
@@ -331,12 +337,12 @@
 
   </div>
 
-  <img id="loading-dots" src="http://zevchonoles.org/prime-chimes/img/loading-dots.gif">
+  <img id="loading-dots" src="//zevchonoles.org/projects/prime-chimes/img/loading-dots.gif">
 
   <canvas id="canvas" width="<?php echo $canvas_width; ?>" height="<?php echo $canvas_height; ?>"></canvas>
 
   <div id="buttons">
-    <a id="math-button" href="#" onclick="toggle_math();">+</a><!--
+    <a id="math-button" href="#" onclick="toggle_math();">?</a><!--
  --><a id="mute-button" href="#" onclick="toggle_mute();" class="mute"></a>
   </div>
 
@@ -344,14 +350,16 @@
 
   <div id="factorizations-buffer"></div>
 
-  <div id="about">
+  <div id="about" style="display: none;">
 
-    <h2>Explanation</h2>
+    <h2>Basic Explanation</h2>
 
       <p>A whole number is prime when it isn't equal to any product of whole numbers other
       than itself and 1. However, if we allow some "new" whole numbers, something that was
       previously prime may now be equal to a product of others. Each diagram and chime
       represents how a prime number factors in a bigger number system.</p>
+
+    <h2>Advanced Explanation</h2>
 
       <p>More technically, if \(p\) is our prime number, each blue circle represents one of the
       prime ideals dividing \(p\mathcal{O}_F\), with the circle's area representing inertial degree,
@@ -367,27 +375,27 @@
 
       <p>This page is built with PHP and Javascript, using AJAX to get new data as needed.
       The chimes are implemented with the <a target="_blank"
-      href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library"><code>howler.js</code>
+      href="//goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library"><code>howler.js</code>
       library</a>.</p>
 
       <p>The actual factorizations are computed by <a target="_blank"
-      href="http://www.sagemath.org">Sage</a>. To factor the ideals \(p\mathcal{O}_F\), Sage must
+      href="//www.sagemath.org">Sage</a>. To factor the ideals \(p\mathcal{O}_F\), Sage must
       first compute \(\mathcal{O}_F\), which can be quite costly. Therefore my Sage script memoizes its
       computation of \(\mathcal{O}_F\) using the <a target="_blank"
-       href="https://docs.python.org/2/library/pickle.html"><code>pickle</code> module</a>.</p>
+       href="//docs.python.org/2/library/pickle.html"><code>pickle</code> module</a>.</p>
 
-      <p>The source code is <a target="_blank" href="https://github.com/Zev-Chonoles/prime-chimes/">available
+      <p>The source code is <a target="_blank" href="//github.com/Zev-Chonoles/prime-chimes/">available
       on Github</a>.</p>
 
     <h2>Acknowledgements</h2>
 
       <p>This page uses the audio files from <a target="_blank" href="http://listen.hatnote.com/">Listen
       to Wikipedia</a>, a project created by Stephen LaPorte and Mahmoud Hashemi. Here is
-      <a target="_blank" href="http://zevchonoles.org/prime-chimes/hatnote-license.txt">a copy of
+      <a target="_blank" href="//zevchonoles.org/projects/prime-chimes/hatnote-license.txt">a copy of
       their license</a>.</p>
 
       <p>The idea to make this "audiation" was somewhat inspired by <a target="_blank"
-      href="http://zevchonoles.org/prime-chimes/kato-poem.pdf">Kazuya Kato's poetry</a>
+      href="http://zevchonoles.org/projects/prime-chimes/kato-poem.pdf">Kazuya Kato's poetry</a>
       about prime numbers.</p>
 
   </div>
@@ -407,11 +415,11 @@
     var degree = <?php echo $degree; ?>;
 
     // "Unique" identifier for the current thread of this page
-    var thread_id = "<?php echo $thread_id; ?>"
+    var thread_id = "<?php echo $thread_id; ?>";
 
   </script>
 
-  <script src="http://zevchonoles.org/prime-chimes/js/main.js"></script>
+  <script src="https://zevchonoles.org/projects/prime-chimes/js/main.js?<?php echo uniqid(); ?>"></script>
 
 </body>
 
